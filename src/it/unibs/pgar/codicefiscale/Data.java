@@ -2,22 +2,22 @@ package it.unibs.pgar.codicefiscale;
 
 public class Data {
 
-    private int giorno;
-    private int mese;
     private int anno;
+    private int mese;
+    private int giorno;
 
-    public Data(int giorno, int mese, int anno) {
-        this.giorno = giorno;
-        this.mese = mese;
+    public Data(int anno, int mese, int giorno) {
         this.anno = anno;
-    }
-
-    public int getGiorno() {
-        return giorno;
-    }
-
-    public void setGiorno(int giorno) {
+        this.mese = mese;
         this.giorno = giorno;
+    }
+
+    public int getAnno() {
+        return anno;
+    }
+
+    public void setAnno(int anno) {
+        this.anno = anno;
     }
 
     public int getMese() {
@@ -28,12 +28,15 @@ public class Data {
         this.mese = mese;
     }
 
-    public int getAnno() {
-        return anno;
+    public int getGiorno() {
+        return giorno;
     }
 
-    public void setAnno(int anno) {
-        this.anno = anno;
+    public void setGiorno(int giorno) {
+        this.giorno = giorno;
     }
+
+
+
 
 }

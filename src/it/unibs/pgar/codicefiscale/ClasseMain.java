@@ -4,8 +4,11 @@ public class ClasseMain {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
-        System.out.println("Ciao anche a te!");
+        Data data = new Data(12, 05, 01);
+        Comune comune = new Comune("bh", "iffiu");
+
+        Persona persona = new Persona("LU", "MEA", Sesso.M, comune, data);
+        System.out.println(persona.generaCodiceFiscale());
 
     }
 
