@@ -8,6 +8,8 @@ public class Persona {
     private Comune comune;
     private Data dataDiNascita;
 
+    private String codiceFiscale;
+
     public static final char[] VOCALI = "AEIOU".toCharArray();
     public static final char[] CONSONANTI = "BCDFGHJKLMNPQRSTVWXYZ".toCharArray();
     public static final char[] ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
@@ -59,6 +61,14 @@ public class Persona {
 
     public void setDataDiNascita(Data dataDiNascita) {
         this.dataDiNascita = dataDiNascita;
+    }
+
+    public String getCodiceFiscale() {
+        return codiceFiscale;
+    }
+
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
     }
 
     public String generaCodiceFiscale() {

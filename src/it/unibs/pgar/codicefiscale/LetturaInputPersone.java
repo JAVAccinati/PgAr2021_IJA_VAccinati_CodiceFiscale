@@ -101,6 +101,9 @@ public class LetturaInputPersone {
             System.out.println(e.getMessage());
         }
 
+        for(int i = 0; i < persone.size(); i ++)
+            persone.get(i).setCodiceFiscale(persone.get(i).generaCodiceFiscale());
+
         return persone;
 
     }
