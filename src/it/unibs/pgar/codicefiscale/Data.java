@@ -41,4 +41,31 @@ public class Data {
         return temp.toString().toCharArray();
     }
 
+    public static Data generaData(String dataData /*XD lol lmao rofl uwu*/) {
+        char[] dataDataArray = dataData.toCharArray();
+
+        int annoData = 0;
+        int meseData = 0;
+        int giornoData = 0;
+
+        for(int i = 0; dataDataArray[i] != '-'; i ++) {
+            annoData *= 10;
+            annoData += dataDataArray[i] - '0';
+        }
+
+        for(int i = 5; dataDataArray[i] != '-'; i ++) {
+            meseData *= 10;
+            meseData += dataDataArray[i] - '0';
+        }
+
+        for(int i = 8; i < dataDataArray.length; i ++) {
+            giornoData *= 10;
+            giornoData += dataDataArray[i] - '0';
+        }
+
+        Data data = new Data(annoData, meseData, giornoData);
+
+        return data;
+    }
+
 }

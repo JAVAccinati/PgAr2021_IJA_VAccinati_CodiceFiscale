@@ -1,5 +1,7 @@
 package it.unibs.pgar.codicefiscale;
 
+import java.util.ArrayList;
+
 public class Comune {
 
     private String nome;
@@ -24,6 +26,19 @@ public class Comune {
 
     public void setCodice(String codice) {
         this.codice = codice;
+    }
+
+    public static Comune generaComune(ArrayList<Comune> comuni, String nomeComune) {
+        String codiceComune = "";
+
+        for(int i = 0; i < comuni.size(); i ++) {
+            if(nomeComune.equals(comuni.get(i).getNome())) {
+                codiceComune = comuni.get(i).getCodice();
+                break;
+            }
+        }
+
+        return new Comune(nomeComune, codiceComune);
     }
 
 }

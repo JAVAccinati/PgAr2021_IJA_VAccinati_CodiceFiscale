@@ -7,16 +7,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-public class LetturaInputPersone {
+public class LetturaComuni {
 
-    public static ArrayList<Persona> esecuzioneLetturaPersone(ArrayList<Comune> comuni) {
+    public static ArrayList<Comune> esecuzioneLetturaComuni() {
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
 
-        ArrayList<Persona> persone = new ArrayList<Persona>();
+        ArrayList<Comune> comuni = new ArrayList<Comune>();
 
         try {
-            String path = new File("src/inputPersone.xml").getPath();
+            String path = new File("src/comuni.xml").getPath();
             xmlif = XMLInputFactory.newInstance();
             xmlr = xmlif.createXMLStreamReader(path, new FileInputStream(path));
 
@@ -25,10 +25,7 @@ public class LetturaInputPersone {
             String variabileDaAggiornare = "";
 
             String nome = "";
-            String cognome = "";
-            Sesso sesso = Sesso.DA_DEFINIRE;
-            Comune comune_nascita = new Comune("", "");
-            Data data_nascita = new Data(0, 0, 0);
+            String codice = "";
 
             while (xmlr.hasNext()) { // continua a leggere finché ha eventi a disposizione
                 switch (xmlr.getEventType()) { // switch sul tipo di evento
@@ -59,37 +56,16 @@ public class LetturaInputPersone {
                         if (xmlr.getText().trim().length() > 0) { // controlla se il testo non contiene solo spazi
                             if (variabileDaAggiornare.equals("nome"))
                                 nome = xmlr.getText();
-                            else if (variabileDaAggiornare.equals("cognome"))
-                                cognome = xmlr.getText();
-                            else if (variabileDaAggiornare.equals("sesso")) {
-                                switch(xmlr.getText()) {
-                                    case "M":
-                                        sesso = Sesso.M;
-                                        break;
-                                    case "F":
-                                        sesso = Sesso.F;
-                                        break;
-                                    default:
-                                        sesso = Sesso.DA_DEFINIRE;
-                                        break;
-                                }
-                            }
-                            else if (variabileDaAggiornare.equals("comune_nascita")) {
-                                comune_nascita = Comune.generaComune(comuni, xmlr.getText());
-                            }
-                            else if (variabileDaAggiornare.equals("data_nascita"))
-                                data_nascita = Data.generaData(xmlr.getText());
+                            else if (variabileDaAggiornare.equals("codice"))
+                                codice = xmlr.getText();
                         }
                         break;
                 }
 
-                if(!nome.equals("") && !cognome.equals("") && !sesso.equals(Sesso.DA_DEFINIRE) && !comune_nascita.getNome().equals("") && data_nascita.getAnno() != 0) {
-                    persone.add(i, new Persona(nome, cognome, sesso, comune_nascita, data_nascita));
+                if(!nome.equals("") && !codice.equals("")) {
+                    comuni.add(i, new Comune(nome, codice));
                     nome = "";
-                    cognome = "";
-                    sesso = Sesso.DA_DEFINIRE;
-                    comune_nascita = new Comune("", "");
-                    data_nascita = new Data(0, 0, 0);
+                    codice = "";
                     i ++;
                 }
 
@@ -101,7 +77,7 @@ public class LetturaInputPersone {
             System.out.println(e.getMessage());
         }
 
-        return persone;
+        return comuni;
 
     }
 

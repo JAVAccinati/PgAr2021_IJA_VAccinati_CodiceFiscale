@@ -1,8 +1,13 @@
 package it.unibs.pgar.codicefiscale;
 
+import java.util.ArrayList;
+
 public class ClasseMain {
 
     public static void main(String[] args) {
+
+        ArrayList<Comune> comuni = LetturaComuni.esecuzioneLetturaComuni();
+        ArrayList<Persona> persone = LetturaInputPersone.esecuzioneLetturaPersone(comuni);
 
         Data data = new Data(2001, 05, 12);
         Comune comune = new Comune("BRESCIA", "B157");
