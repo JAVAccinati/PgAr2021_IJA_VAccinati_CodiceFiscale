@@ -10,6 +10,8 @@ public class Persona {
 
     public static final char[] VOCALI = "AEIOU".toCharArray();
     public static final char[] CONSONANTI = "BCDFGHJKLMNPQRSTVWXYZ".toCharArray();
+    public static final char[] ALFABETO = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+    public static final int FATTORE_CORREZIONE_GIORNO_DI_NASCITA = 40;
 
     public Persona(String nome, String cognome, Sesso sesso, Comune comune, Data dataDiNascita) {
         this.nome = nome;
@@ -92,6 +94,7 @@ public class Persona {
                     if (cognomeArray[i] == CONSONANTI[j])
                         cf += cognomeArray[i];
         }
+
         //generazione lettere NOME
 
         char[] nomeArray = nome.toCharArray();
@@ -132,6 +135,48 @@ public class Persona {
             cf += tempArray[2];
             cf += tempArray[3];
         }
+
+        //anno di nascita
+        char[] annoArray = dataDiNascita.creaArray(dataDiNascita.getAnno());
+        cf += annoArray[annoArray.length - 2];
+        cf += annoArray[annoArray.length - 1];
+
+        //mese di nascita
+        char[] mesiArray = {'A'/*gennaio*/, 'B'/*febbraio*/, 'C'/*marzo*/, 'D'/*aprile*/,
+                'E'/*maggio*/, 'H'/*giugno*/, 'L'/*luglio*/, 'M'/*agosto*/,
+                'P'/*settembre*/, 'R'/*ottobre*/,'S'/*novembre*/, 'T'/*dicembre*/};
+        cf += mesiArray[dataDiNascita.getMese() - 1];
+
+        //giorno di nascita
+        Integer giorno = getDataDiNascita().getGiorno();
+        if(sesso.equals(Sesso.F))
+            giorno += FATTORE_CORREZIONE_GIORNO_DI_NASCITA;
+        if(giorno < 10)
+            cf += '0';
+        cf += giorno.toString();
+
+        //comune di nascita
+        cf += comune.getCodice();
+
+        //carattere di controllo
+        char [] cfArray = cf.toCharArray();
+        int count = 0;
+        for(int i = 0; i < cfArray.length; i ++) {
+            for(int j = 0; j < ValoriCaratteri.values().length; j ++) {
+                if(cfArray[i] == ValoriCaratteri.values()[j].getCosaRappresentano()) {
+                    //correzione di 1 perché lo Stato conta da 1... che stupidi
+                    if(i % 2 == 0) {
+                        count += ValoriCaratteri.values()[j].getValoreDispari();
+                        break;
+                    } else {
+                        count += ValoriCaratteri.values()[j].getValorePari();
+                        break;
+                    }
+                }
+            }
+        }
+        int resto = count % 26;
+        cf += ALFABETO[resto];
 
         return cf;
     }

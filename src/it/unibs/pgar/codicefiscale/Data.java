@@ -36,7 +36,9 @@ public class Data {
         this.giorno = giorno;
     }
 
-
-
+    public char[] creaArray(int numero) {
+        Integer temp = numero;
+        return temp.toString().toCharArray();
+    }
 
 }
