@@ -32,28 +32,9 @@ public class LetturaInputPersone {
 
             while (xmlr.hasNext()) { // continua a leggere finché ha eventi a disposizione
                 switch (xmlr.getEventType()) { // switch sul tipo di evento
-                    //non utilizzato
-                    case XMLStreamConstants.START_DOCUMENT: // inizio del documento: stampa che inizia il documento
-                        /*System.out.println("Start Read Doc " + path);*/
-                        break;
-
                     case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: stampa il nome del tag e i suoi attributi
                         variabileDaAggiornare = xmlr.getLocalName();
-
-                        /*System.out.println("Tag " + xmlr.getLocalName());
-                        for (int i = 0; i < xmlr.getAttributeCount(); i++)
-                            System.out.printf(" => attributo %s->%s%n", xmlr.getAttributeLocalName(i), xmlr.getAttributeValue(i));*/
                         break;
-
-                    //non utilizzato
-                    case XMLStreamConstants.END_ELEMENT: // fine di un elemento: stampa il nome del tag chiuso
-                        //System.out.println("END-Tag " + xmlr.getLocalName());
-                        break;
-
-                    //non utilizzato
-                    case XMLStreamConstants.COMMENT:
-                        System.out.println("// commento " + xmlr.getText());
-                        break; // commento: ne stampa il contenuto
 
                     case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: stampa il testo
                         if (xmlr.getText().trim().length() > 0) { // controlla se il testo non contiene solo spazi

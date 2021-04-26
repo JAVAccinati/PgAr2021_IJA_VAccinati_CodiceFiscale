@@ -68,4 +68,9 @@ public class Data {
         return data;
     }
 
+    @Override
+    public String toString() {
+        return anno + "-" + ( mese < 10 ? "0" + mese : mese ) + "-" + ( giorno < 10 ? "0" + giorno : giorno );
+    }
+
 }

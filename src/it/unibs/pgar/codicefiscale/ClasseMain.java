@@ -8,7 +8,15 @@ public class ClasseMain {
 
         ArrayList<Comune> comuni = LetturaComuni.esecuzioneLetturaComuni();
         ArrayList<Persona> persone = LetturaInputPersone.esecuzioneLetturaPersone(comuni);
+        generazioneCodiciFiscali(persone);
+        ArrayList<String> codiciFiscali = LetturaCodiciFiscali.esecuzioneLetturaCodiciFiscali();
+        ScritturaCodiciPersone.esecuzioneScritturaCodiciPersone(persone, codiciFiscali, comuni);
+    }
 
+    public static void generazioneCodiciFiscali(ArrayList<Persona> persone) {
+        for(int i = 0; i < persone.size(); i++) {
+            persone.get(i).generaCodiceFiscale();
+        }
     }
 
 }
