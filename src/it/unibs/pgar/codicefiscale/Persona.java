@@ -154,14 +154,14 @@ public class Persona {
         //mese di nascita
         char[] mesiArray = {'A'/*gennaio*/, 'B'/*febbraio*/, 'C'/*marzo*/, 'D'/*aprile*/,
                 'E'/*maggio*/, 'H'/*giugno*/, 'L'/*luglio*/, 'M'/*agosto*/,
-                'P'/*settembre*/, 'R'/*ottobre*/,'S'/*novembre*/, 'T'/*dicembre*/};
+                'P'/*settembre*/, 'R'/*ottobre*/, 'S'/*novembre*/, 'T'/*dicembre*/};
         cf += mesiArray[dataDiNascita.getMese() - 1];
 
         //giorno di nascita
         Integer giorno = getDataDiNascita().getGiorno();
-        if(sesso.equals(Sesso.F))
+        if (sesso.equals(Sesso.F))
             giorno += FATTORE_CORREZIONE_GIORNO_DI_NASCITA;
-        if(giorno < 10)
+        if (giorno < 10)
             cf += '0';
         cf += giorno.toString();
 
@@ -169,13 +169,13 @@ public class Persona {
         cf += comune.getCodice();
 
         //carattere di controllo
-        char [] cfArray = cf.toCharArray();
+        char[] cfArray = cf.toCharArray();
         int count = 0;
-        for(int i = 0; i < cfArray.length; i ++) {
-            for(int j = 0; j < ValoriCaratteri.values().length; j ++) {
-                if(cfArray[i] == ValoriCaratteri.values()[j].getCosaRappresentano()) {
+        for (int i = 0; i < cfArray.length; i++) {
+            for (int j = 0; j < ValoriCaratteri.values().length; j++) {
+                if (cfArray[i] == ValoriCaratteri.values()[j].getCosaRappresentano()) {
                     //correzione di 1 perché lo Stato conta da 1... che stupidi
-                    if(i % 2 == 0) {
+                    if (i % 2 == 0) {
                         count += ValoriCaratteri.values()[j].getValoreDispari();
                         break;
                     } else {

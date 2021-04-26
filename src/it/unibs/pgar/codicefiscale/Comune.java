@@ -31,8 +31,8 @@ public class Comune {
     public static Comune generaComune(ArrayList<Comune> comuni, String nomeComune) {
         String codiceComune = "";
 
-        for(int i = 0; i < comuni.size(); i ++) {
-            if(nomeComune.equals(comuni.get(i).getNome())) {
+        for (int i = 0; i < comuni.size(); i++) {
+            if (nomeComune.equals(comuni.get(i).getNome())) {
                 codiceComune = comuni.get(i).getCodice();
                 break;
             }

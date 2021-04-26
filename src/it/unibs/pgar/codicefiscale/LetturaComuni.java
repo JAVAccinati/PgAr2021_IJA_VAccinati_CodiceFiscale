@@ -62,11 +62,11 @@ public class LetturaComuni {
                         break;
                 }
 
-                if(!nome.equals("") && !codice.equals("")) {
+                if (!nome.equals("") && !codice.equals("")) {
                     comuni.add(i, new Comune(nome, codice));
                     nome = "";
                     codice = "";
-                    i ++;
+                    i++;
                 }
 
                 xmlr.next();

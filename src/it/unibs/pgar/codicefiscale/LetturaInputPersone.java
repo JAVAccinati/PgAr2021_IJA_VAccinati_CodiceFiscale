@@ -62,7 +62,7 @@ public class LetturaInputPersone {
                             else if (variabileDaAggiornare.equals("cognome"))
                                 cognome = xmlr.getText();
                             else if (variabileDaAggiornare.equals("sesso")) {
-                                switch(xmlr.getText()) {
+                                switch (xmlr.getText()) {
                                     case "M":
                                         sesso = Sesso.M;
                                         break;
@@ -73,24 +73,22 @@ public class LetturaInputPersone {
                                         sesso = Sesso.DA_DEFINIRE;
                                         break;
                                 }
-                            }
-                            else if (variabileDaAggiornare.equals("comune_nascita")) {
+                            } else if (variabileDaAggiornare.equals("comune_nascita")) {
                                 comune_nascita = Comune.generaComune(comuni, xmlr.getText());
-                            }
-                            else if (variabileDaAggiornare.equals("data_nascita"))
+                            } else if (variabileDaAggiornare.equals("data_nascita"))
                                 data_nascita = Data.generaData(xmlr.getText());
                         }
                         break;
                 }
 
-                if(!nome.equals("") && !cognome.equals("") && !sesso.equals(Sesso.DA_DEFINIRE) && !comune_nascita.getNome().equals("") && data_nascita.getAnno() != 0) {
+                if (!nome.equals("") && !cognome.equals("") && !sesso.equals(Sesso.DA_DEFINIRE) && !comune_nascita.getNome().equals("") && data_nascita.getAnno() != 0) {
                     persone.add(i, new Persona(nome, cognome, sesso, comune_nascita, data_nascita));
                     nome = "";
                     cognome = "";
                     sesso = Sesso.DA_DEFINIRE;
                     comune_nascita = new Comune("", "");
                     data_nascita = new Data(0, 0, 0);
-                    i ++;
+                    i++;
                 }
 
                 xmlr.next();
@@ -101,7 +99,7 @@ public class LetturaInputPersone {
             System.out.println(e.getMessage());
         }
 
-        for(int i = 0; i < persone.size(); i ++)
+        for (int i = 0; i < persone.size(); i++)
             persone.get(i).setCodiceFiscale(persone.get(i).generaCodiceFiscale());
 
         return persone;
