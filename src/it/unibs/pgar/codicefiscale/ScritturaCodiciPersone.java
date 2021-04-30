@@ -205,6 +205,9 @@ public class ScritturaCodiciPersone {
                 continue;
             }
             int[] giorniPerMese = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+            int anno = (codiceArray[6] - '0') * 10 + codiceArray[7] - '0';
+            if(anno % 4 == 0 )
+                giorniPerMese[1] ++;
             if (mese != -1 && (giorno < 41 && giorno > giorniPerMese[mese]) || (giorno > giorniPerMese[mese] + 40)) {
                 invalidi.add(codice);
                 continue;
@@ -275,10 +278,6 @@ public class ScritturaCodiciPersone {
             trovato = false;
         }
 
-
         return spaiati;
-
     }
 }
-
-

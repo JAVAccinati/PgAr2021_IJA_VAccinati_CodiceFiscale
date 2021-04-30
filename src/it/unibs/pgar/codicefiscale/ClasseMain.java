@@ -3,7 +3,7 @@ package it.unibs.pgar.codicefiscale;
 import java.util.ArrayList;
 
 /**
- * Main class, did you ever heard of it?
+ * Main class, have you ever heard of it?
  */
 public class ClasseMain {
 
@@ -31,10 +31,3 @@ public class ClasseMain {
     }
 
 }
-
-
-
-
-
-
-
