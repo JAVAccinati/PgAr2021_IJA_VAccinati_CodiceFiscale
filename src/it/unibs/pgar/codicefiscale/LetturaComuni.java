@@ -15,6 +15,7 @@ public class LetturaComuni {
     /**
      * Salva i comuni, con i rispettivi nomi e codici, scritti in comuni.xml
      * in un array di oggetti Comune
+     *
      * @return comuni: ArrayList Comune
      */
     public static ArrayList<Comune> esecuzioneLetturaComuni() {

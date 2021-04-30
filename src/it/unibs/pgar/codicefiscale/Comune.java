@@ -34,7 +34,8 @@ public class Comune {
     /**
      * Permette di creare un oggetto comune a partire
      * dal nome consultando il file xml comuni per ottenerne il codice
-     * @param comuni: ArrayList Comune
+     *
+     * @param comuni:     ArrayList Comune
      * @param nomeComune: String
      * @return comuneCercato: Comune
      */

@@ -6,6 +6,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+
 /**
  * Si occupa della lettura in primis della lettura del file xml inputPersone.
  * Traduce, organizza e memorizza inoltre i dati letti.
@@ -14,6 +15,7 @@ public class LetturaInputPersone {
     /**
      * Salva in un array i dati(nome, cognome, sesso, data di nascita e comune di nascita) delle persone contenute
      * nel file in un array. Inoltre per ciascuna di esse ne calcola il codice fiscale.
+     *
      * @param comuni: ArrayList Comune
      * @return persone: ArrayList Persone
      */

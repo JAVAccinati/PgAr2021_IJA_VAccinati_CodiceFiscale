@@ -9,6 +9,7 @@ public class ClasseMain {
 
     /**
      * Richiamiamo solo i metodi delle altre classi nel main
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -22,10 +23,11 @@ public class ClasseMain {
 
     /**
      * Inizializza l'attributo codice fiscale per tutti gli oggetti Persona in un array.
+     *
      * @param persone
      */
     public static void generazioneCodiciFiscali(ArrayList<Persona> persone) {
-        for(int i = 0; i < persone.size(); i++) {
+        for (int i = 0; i < persone.size(); i++) {
             persone.get(i).generaCodiceFiscale();
         }
     }

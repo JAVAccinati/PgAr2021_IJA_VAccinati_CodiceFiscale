@@ -42,6 +42,7 @@ public class Data {
 
     /**
      * Crea un array di caratteri a partire da un numero intero
+     *
      * @param numero: int
      * @return numeroInCaratteri: char[]
      */
@@ -53,6 +54,7 @@ public class Data {
     /**
      * Partendo da una stringa che rappresenta la data di nascita
      * crea un oggetto Data
+     *
      * @param dataData: String
      * @return dataGenerata: Data
      */
@@ -63,17 +65,17 @@ public class Data {
         int meseData = 0;
         int giornoData = 0;
 
-        for(int i = 0; dataDataArray[i] != '-'; i ++) {
+        for (int i = 0; dataDataArray[i] != '-'; i++) {
             annoData *= 10;
             annoData += dataDataArray[i] - '0';
         }
 
-        for(int i = 5; dataDataArray[i] != '-'; i ++) {
+        for (int i = 5; dataDataArray[i] != '-'; i++) {
             meseData *= 10;
             meseData += dataDataArray[i] - '0';
         }
 
-        for(int i = 8; i < dataDataArray.length; i ++) {
+        for (int i = 8; i < dataDataArray.length; i++) {
             giornoData *= 10;
             giornoData += dataDataArray[i] - '0';
         }
@@ -88,7 +90,7 @@ public class Data {
      * Esprime gli attributi dell'oggetto Data sottoforma di stringa
      */
     public String toString() {
-        return anno + "-" + ( mese < 10 ? "0" + mese : mese ) + "-" + ( giorno < 10 ? "0" + giorno : giorno );
+        return anno + "-" + (mese < 10 ? "0" + mese : mese) + "-" + (giorno < 10 ? "0" + giorno : giorno);
     }
 
 }

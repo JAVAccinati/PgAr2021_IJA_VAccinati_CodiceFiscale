@@ -19,9 +19,10 @@ public class ScritturaCodiciPersone {
      * -Persone, ottenute da inputPersone.xml, e il relativo codice fiscale(se presente in codiciFiscali.xml)
      * -Invalidi, ovvero i codici di codiciFiscali.xml che non seguono le regole illustrare su https://it.wikipedia.org/wiki/Codice_fiscale
      * -Spaiati, ovvero i codici di codiciFiscali.xml che, nonostante siano corretti, non individuano nessuna persona di inputPersone.xml
-     * @param persone: ArrayList Persone
+     *
+     * @param persone:       ArrayList Persone
      * @param codiciFiscali: ArrayList String
-     * @param comuni: ArrayList Comune
+     * @param comuni:        ArrayList Comune
      */
     public static void esecuzioneScritturaCodiciPersone(ArrayList<Persona> persone, ArrayList<String> codiciFiscali, ArrayList<Comune> comuni) {
 
@@ -126,8 +127,9 @@ public class ScritturaCodiciPersone {
 
     /**
      * Individua se una stringa (un codice fiscale) e' presente in un array di stringhe(insieme di codici fiscali)
+     *
      * @param codiceFiscalePersona: String
-     * @param codiciFiscali: ArrayList String
+     * @param codiciFiscali:        ArrayList String
      * @return isPresente: boolean
      */
     public static boolean isPresente(String codiceFiscalePersona, ArrayList<String> codiciFiscali) {
@@ -140,8 +142,9 @@ public class ScritturaCodiciPersone {
     /**
      * Determina quali codici fiscali sono errati (ci basiamo su https://it.wikipedia.org/wiki/Codice_fiscale) in
      * un array di stringhe, ciascuna delle quali e' un potenziale codice fiscale
+     *
      * @param codiciFiscali: ArrayList String
-     * @param comuni: ArrayList Comune
+     * @param comuni:        ArrayList Comune
      * @return invalidi: ArrayList String
      */
     public static ArrayList<String> cercaInvalidi(ArrayList<String> codiciFiscali, ArrayList<Comune> comuni) {
@@ -206,8 +209,8 @@ public class ScritturaCodiciPersone {
             }
             int[] giorniPerMese = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             int anno = (codiceArray[6] - '0') * 10 + codiceArray[7] - '0';
-            if(anno % 4 == 0 )
-                giorniPerMese[1] ++;
+            if (anno % 4 == 0)
+                giorniPerMese[1]++;
             if (mese != -1 && (giorno < 41 && giorno > giorniPerMese[mese]) || (giorno > giorniPerMese[mese] + 40)) {
                 invalidi.add(codice);
                 continue;
@@ -254,9 +257,10 @@ public class ScritturaCodiciPersone {
     /**
      * Individua per esclusione (codici non relativi ad una persona di inputPersone.xml ne' invalidi) quali codici di codiciFiscali.xml
      * sono corretti, ma non individuano una persona in inputPersone.xml
-     * @param persone: ArrayList Persona
+     *
+     * @param persone:       ArrayList Persona
      * @param codiciFiscali: ArrayList String
-     * @param invalidi: ArrayList String
+     * @param invalidi:      ArrayList String
      * @return spaiati: ArrayList String
      */
     public static ArrayList<String> cercaSpaiati(ArrayList<Persona> persone, ArrayList<String> codiciFiscali, ArrayList<String> invalidi) {

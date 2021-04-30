@@ -15,6 +15,7 @@ public class LetturaCodiciFiscali {
     /**
      * Estrapola dalla lettura del file xml codiciFiscali un array di stringhe
      * contenente tutti i codici
+     *
      * @return codiciFiscali: ArrayList String
      */
     public static ArrayList<String> esecuzioneLetturaCodiciFiscali() {

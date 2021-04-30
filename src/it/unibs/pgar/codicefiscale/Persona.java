@@ -78,6 +78,7 @@ public class Persona {
     /**
      * Accedendo agli attributi dell'oggetto Persona ne calcola il codice fiscale.
      * Abbiamo seguito il metodo esposto su https://it.wikipedia.org/wiki/Codice_fiscale
+     *
      * @return codiceFiscale: String
      */
     public String generaCodiceFiscale() {
