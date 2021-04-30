@@ -7,8 +7,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
+/**
+ * Si occupa in primis della lettura del file xml comuni.
+ * Traduce, organizza e memorizza inoltre i dati letti.
+ */
 public class LetturaComuni {
-
+    /**
+     * Salva i comuni, con i rispettivi nomi e codici, scritti in comuni.xml
+     * in un array di oggetti Comune
+     * @return comuni: ArrayList Comune
+     */
     public static ArrayList<Comune> esecuzioneLetturaComuni() {
         XMLInputFactory xmlif = null;
         XMLStreamReader xmlr = null;
@@ -29,11 +37,11 @@ public class LetturaComuni {
 
             while (xmlr.hasNext()) { // continua a leggere finché ha eventi a disposizione
                 switch (xmlr.getEventType()) { // switch sul tipo di evento
-                    case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: stampa il nome del tag e i suoi attributi
+                    case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: salva il nome del tag
                         variabileDaAggiornare = xmlr.getLocalName();
                         break;
 
-                    case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: stampa il testo
+                    case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: salva le informazione contenute
                         if (xmlr.getText().trim().length() > 0) { // controlla se il testo non contiene solo spazi
                             if (variabileDaAggiornare.equals("nome"))
                                 nome = xmlr.getText();

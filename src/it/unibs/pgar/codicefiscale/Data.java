@@ -1,5 +1,9 @@
 package it.unibs.pgar.codicefiscale;
 
+/**
+ * Una classe che definisce l'oggetto data, scomposto in anno, mese e giorno.
+ * In questo modo i dati risultano meglio accessibili.
+ */
 public class Data {
 
     private int anno;
@@ -36,12 +40,23 @@ public class Data {
         this.giorno = giorno;
     }
 
+    /**
+     * Crea un array di caratteri a partire da un numero intero
+     * @param numero: int
+     * @return numeroInCaratteri: char[]
+     */
     public char[] creaArray(int numero) {
         Integer temp = numero;
         return temp.toString().toCharArray();
     }
 
-    public static Data generaData(String dataData /*XD lol lmao rofl uwu*/) {
+    /**
+     * Partendo da una stringa che rappresenta la data di nascita
+     * crea un oggetto Data
+     * @param dataData: String
+     * @return dataGenerata: Data
+     */
+    public static Data generaData(String dataData /*XD loL lMaO*/) {
         char[] dataDataArray = dataData.toCharArray();
 
         int annoData = 0;
@@ -69,6 +84,9 @@ public class Data {
     }
 
     @Override
+    /**
+     * Esprime gli attributi dell'oggetto Data sottoforma di stringa
+     */
     public String toString() {
         return anno + "-" + ( mese < 10 ? "0" + mese : mese ) + "-" + ( giorno < 10 ? "0" + giorno : giorno );
     }

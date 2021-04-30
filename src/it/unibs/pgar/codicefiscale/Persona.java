@@ -1,5 +1,9 @@
 package it.unibs.pgar.codicefiscale;
 
+/**
+ * Definisce un oggetto persona caratterizzato da
+ * - nome -cognome -sesso -comune di nascita -data di nascita -codice fiscale
+ */
 public class Persona {
 
     private String nome;
@@ -71,6 +75,11 @@ public class Persona {
         this.codiceFiscale = codiceFiscale;
     }
 
+    /**
+     * Accedendo agli attributi dell'oggetto Persona ne calcola il codice fiscale.
+     * Abbiamo seguito il metodo esposto su https://it.wikipedia.org/wiki/Codice_fiscale
+     * @return codiceFiscale: String
+     */
     public String generaCodiceFiscale() {
         String cf = "";
         int nConsonanti = 0;

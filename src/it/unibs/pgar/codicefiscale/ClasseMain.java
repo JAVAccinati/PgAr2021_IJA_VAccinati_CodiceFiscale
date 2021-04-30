@@ -2,8 +2,15 @@ package it.unibs.pgar.codicefiscale;
 
 import java.util.ArrayList;
 
+/**
+ * Main class, did you ever heard of it?
+ */
 public class ClasseMain {
 
+    /**
+     * Richiamiamo solo i metodi delle altre classi nel main
+     * @param args
+     */
     public static void main(String[] args) {
 
         ArrayList<Comune> comuni = LetturaComuni.esecuzioneLetturaComuni();
@@ -13,6 +20,10 @@ public class ClasseMain {
         ScritturaCodiciPersone.esecuzioneScritturaCodiciPersone(persone, codiciFiscali, comuni);
     }
 
+    /**
+     * Inizializza l'attributo codice fiscale per tutti gli oggetti Persona in un array.
+     * @param persone
+     */
     public static void generazioneCodiciFiscali(ArrayList<Persona> persone) {
         for(int i = 0; i < persone.size(); i++) {
             persone.get(i).generaCodiceFiscale();
@@ -21,15 +32,9 @@ public class ClasseMain {
 
 }
 
-/*
 
-verifica codici fiscali
-confronto codici fiscali validi
-conseguentemente salva quei codici
-scrivi file Persone
-scrivi file Codici
 
-inserisci controlli inputPersone e codiciFiscali
-javadoc e commenti
 
- */
+
+
+

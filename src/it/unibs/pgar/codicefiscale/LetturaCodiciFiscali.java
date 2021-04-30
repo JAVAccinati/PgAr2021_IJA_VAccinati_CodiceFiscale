@@ -7,8 +7,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
+/**
+ * Si occupa in primis della lettura del file xml codiciFiscali.
+ * Traduce, organizza e memorizza inoltre i dati letti.
+ */
 public class LetturaCodiciFiscali {
-
+    /**
+     * Estrapola dalla lettura del file xml codiciFiscali un array di stringhe
+     * contenente tutti i codici
+     * @return codiciFiscali: ArrayList String
+     */
     public static ArrayList<String> esecuzioneLetturaCodiciFiscali() {
 
         XMLInputFactory xmlif = null;
@@ -27,10 +35,10 @@ public class LetturaCodiciFiscali {
 
             while (xmlr.hasNext()) { // continua a leggere finché ha eventi a disposizione
                 switch (xmlr.getEventType()) { // switch sul tipo di evento
-                    case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: stampa il nome del tag e i suoi attributi
+                    case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: salva il nome del tag
                         variabileDaAggiornare = xmlr.getLocalName();
                         break;
-                    case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: stampa il testo
+                    case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: salva il codice fiscale
                         if (xmlr.getText().trim().length() > 0) // controlla se il testo non contiene solo spazi
                             if (variabileDaAggiornare.equals("codice"))
                                 codiceFiscale = xmlr.getText();

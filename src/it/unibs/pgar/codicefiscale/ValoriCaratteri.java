@@ -1,5 +1,9 @@
 package it.unibs.pgar.codicefiscale;
 
+/**
+ * Enumerazione che contiene i possibili caratteri contenuti in un codice fiscale e i SIMPATICISSIMI
+ * relativi valori, qualora il carattere considerato si trovi in un posto pari o dispari, per il  calcolo del carattere di controllo
+ */
 public enum ValoriCaratteri {
     N0('0', 1, 0),
     N1('1', 0, 1),

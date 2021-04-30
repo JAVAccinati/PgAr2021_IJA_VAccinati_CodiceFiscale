@@ -5,10 +5,24 @@ import javax.xml.stream.XMLStreamWriter;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+/**
+ * Scrive il file xml codiciPersone associando alle persone di InputPersone.xml il rispettivo codice fiscale se presente in
+ * codiciFiscali.xml. Inoltre scrive i codici fiscali non abbinati distinguendoli in invalidi e spaiati
+ */
 public class ScritturaCodiciPersone {
 
     public static final String ASSENTE = "ASSENTE";
 
+    /**
+     * Inizializza e scrive il file codiciPersone.xml
+     * Questo file viene diviso in 3 sezioni:
+     * -Persone, ottenute da inputPersone.xml, e il relativo codice fiscale(se presente in codiciFiscali.xml)
+     * -Invalidi, ovvero i codici di codiciFiscali.xml che non seguono le regole illustrare su https://it.wikipedia.org/wiki/Codice_fiscale
+     * -Spaiati, ovvero i codici di codiciFiscali.xml che, nonostante siano corretti, non individuano nessuna persona di inputPersone.xml
+     * @param persone: ArrayList Persone
+     * @param codiciFiscali: ArrayList String
+     * @param comuni: ArrayList Comune
+     */
     public static void esecuzioneScritturaCodiciPersone(ArrayList<Persona> persone, ArrayList<String> codiciFiscali, ArrayList<Comune> comuni) {
 
         XMLOutputFactory xmlof = null;
@@ -110,6 +124,12 @@ public class ScritturaCodiciPersone {
         }
     }
 
+    /**
+     * Individua se una stringa (un codice fiscale) e' presente in un array di stringhe(insieme di codici fiscali)
+     * @param codiceFiscalePersona: String
+     * @param codiciFiscali: ArrayList String
+     * @return isPresente: boolean
+     */
     public static boolean isPresente(String codiceFiscalePersona, ArrayList<String> codiciFiscali) {
         for (int i = 0; i < codiciFiscali.size(); i++)
             if (codiceFiscalePersona.equals(codiciFiscali.get(i)))
@@ -117,6 +137,13 @@ public class ScritturaCodiciPersone {
         return false;
     }
 
+    /**
+     * Determina quali codici fiscali sono errati (ci basiamo su https://it.wikipedia.org/wiki/Codice_fiscale) in
+     * un array di stringhe, ciascuna delle quali e' un potenziale codice fiscale
+     * @param codiciFiscali: ArrayList String
+     * @param comuni: ArrayList Comune
+     * @return invalidi: ArrayList String
+     */
     public static ArrayList<String> cercaInvalidi(ArrayList<String> codiciFiscali, ArrayList<Comune> comuni) {
         ArrayList<String> invalidi = new ArrayList<String>();
 
@@ -221,6 +248,14 @@ public class ScritturaCodiciPersone {
         return invalidi;
     }
 
+    /**
+     * Individua per esclusione (codici non relativi ad una persona di inputPersone.xml ne' invalidi) quali codici di codiciFiscali.xml
+     * sono corretti, ma non individuano una persona in inputPersone.xml
+     * @param persone: ArrayList Persona
+     * @param codiciFiscali: ArrayList String
+     * @param invalidi: ArrayList String
+     * @return spaiati: ArrayList String
+     */
     public static ArrayList<String> cercaSpaiati(ArrayList<Persona> persone, ArrayList<String> codiciFiscali, ArrayList<String> invalidi) {
         ArrayList<String> spaiati = new ArrayList<String>();
         boolean trovato = false;
