@@ -74,7 +74,7 @@ public class ScritturaCodiciPersone {
             xmlw.writeEndElement();
 
             ArrayList<String> invalidi = cercaInvalidi(codiciFiscali, comuni);
-            ArrayList<String> spaiati = cercaSpaiati(persone, codiciFiscali);
+            ArrayList<String> spaiati = cercaSpaiati(persone, codiciFiscali, invalidi);
 
             xmlw.writeCharacters("\n\t");
             xmlw.writeStartElement("invalidi");
@@ -152,15 +152,17 @@ public class ScritturaCodiciPersone {
                 continue;
 
             //controllo caratteri mesi
-            char[] mesi = {'A', 'B', 'D', 'E', 'H', 'L', 'M', 'P', 'R', 'S', 'T'};
+            char[] mesi = {'A', 'B', 'C', 'D', 'E', 'H', 'L', 'M', 'P', 'R', 'S', 'T'};
             int mese = -1;
             for (int j = 0; j < mesi.length && !deviUscire; j++) {
-                if (codiceArray[8] != mesi[j]) {
+                if (codiceArray[8] == mesi[j]) {
+                    mese = j;
+                    break;
+                }
+                if (mesi[j] == 'T') {
                     invalidi.add(codice);
                     deviUscire = true;
                 }
-                if (codiceArray[8] == mesi[j])
-                    mese = j;
             }
             if (deviUscire == true)
                 continue;
@@ -195,7 +197,7 @@ public class ScritturaCodiciPersone {
 
             //controllo carattere di controllo
             int count = 0;
-            for (int j = 0; j < codiceArray.length; j++) {
+            for (int j = 0; j < codiceArray.length - 1; j++) {
                 for (int k = 0; k < ValoriCaratteri.values().length; k++) {
                     if (codiceArray[j] == ValoriCaratteri.values()[k].getCosaRappresentano()) {
                         //correzione di 1 perché lo Stato conta da 1... che stupidi
@@ -219,19 +221,29 @@ public class ScritturaCodiciPersone {
         return invalidi;
     }
 
-    public static ArrayList<String> cercaSpaiati(ArrayList<Persona> persone, ArrayList<String> codiciFiscali) {
+    public static ArrayList<String> cercaSpaiati(ArrayList<Persona> persone, ArrayList<String> codiciFiscali, ArrayList<String> invalidi) {
         ArrayList<String> spaiati = new ArrayList<String>();
         boolean trovato = false;
-        for (int i = 0; i < codiciFiscali.size(); i++, trovato = false) {
+        for (int i = 0; i < codiciFiscali.size(); i++) {
             for (int j = 0; j < persone.size() && !trovato; j++) {
-                if (codiciFiscali.equals(persone.get(j).getCodiceFiscale())) {
+                if (codiciFiscali.get(i).equals(persone.get(j).getCodiceFiscale())) {
                     trovato = true;
                 }
             }
-            if (!trovato)
+            for (int k = 0; k < invalidi.size() && !trovato; k++) {
+                if (invalidi.get(k).equals(codiciFiscali.get(i))) {
+                    trovato = true;
+                }
+            }
+            if (trovato == false)
                 spaiati.add(codiciFiscali.get(i));
+            trovato = false;
         }
-        return spaiati;
-    }
 
+
+        return spaiati;
+
+    }
 }
+
+
